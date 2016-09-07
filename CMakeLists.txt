@@ -3,5 +3,5 @@ project(FuzzySoccerPlayer)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES src/main.cpp src/fuzzylib.h src/fuzzylib.cpp)
+set(SOURCE_FILES src/main.cpp src/fuzzylib.cpp)
 add_executable(FuzzySoccerPlayer ${SOURCE_FILES})
