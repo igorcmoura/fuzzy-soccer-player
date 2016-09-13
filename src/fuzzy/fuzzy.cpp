@@ -1,44 +1,24 @@
-//
-// Created by elRubo on 07/09/2016.
-//
 
 #include <iostream>
 #include <climits>
-#include "fuzzylib.h"
+#include "fuzzy.h"
 
-float trapezium_angle(int x, int a, int b, int c, int d){
-    float y;
+namespace fuzzy {
 
-    if(x<=a || x>=d){     //out of range
-        y =0;
-    }else{
-        if(x>=b && x<=c){ //middle of trapezium
-            y = 1;
-        }else{
-            if(x>a && x<b){     //left ramp
-                y = ((float)(x-a))/(b-a);
-            }
-            else{
-                if(x>c && x<d){//right ramp
-                    y = 1 - ((float)(x-c))/(d-c);
-                }
-            }
-        }
-    }
-
-    return y;
+FuzzySet createTrapezium(float a, float b, float c, float d, Domain domain) {
+    return FuzzySet(a, b, c, d, domain);
 }
 
-float triangle_angle(int x, int a, int b, int c){
-    return trapezium_angle(x, a, b, b, c);
+FuzzySet createTriangle(float a, float b, float c, Domain domain) {
+    return FuzzySet(a, b, b, c, domain);
 }
 
-float linear_up_angle(int x, int a, int b){
-    return trapezium_angle(x, a, b, INT_MAX, INT_MAX);
+FuzzySet createUpLine(float a, float b, Domain domain) {
+    return FuzzySet(a, b, domain.end, domain.end, domain);
 }
 
-float linear_down_angle(int x, int a, int b){
-    return trapezium_angle(x, INT_MIN, INT_MIN, a, b);
+FuzzySet createDownLine(float a, float b, Domain domain) {
+    return FuzzySet(domain.begin, domain.begin, a, b, domain);
 }
 
 std::vector<std::vector<float>> dot_product(std::vector<std::vector<float>> matrix_a, std::vector<std::vector<float>> matrix_b){
@@ -100,3 +80,5 @@ std::vector<std::vector<float>> dot_product(std::vector<std::vector<float>> matr
     }
     return final;
 }
+
+} // namespace fuzzy
