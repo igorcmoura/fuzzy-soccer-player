@@ -1,12 +1,12 @@
-//
-// Created by elRubo on 13/09/2016.
-//
-
 #ifndef FUZZYSOCCERPLAYER_FUZZYRULE_H
-#include<vector>
-#include<algorithm> //for std::min
 #define FUZZYSOCCERPLAYER_FUZZYRULE_H
 
+#include<vector>
+#include<algorithm> //for std::min
+
+#include "fuzzy_set.h"
+
+namespace fuzzy {
 
 class FuzzyRule {
 public:
@@ -23,5 +23,7 @@ private:
     void p_computeAlpha();
 
 };
+
+} // namespace fuzzy
 
 #endif //FUZZYSOCCERPLAYER_FUZZYRULE_H

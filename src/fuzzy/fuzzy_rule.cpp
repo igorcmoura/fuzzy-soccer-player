@@ -1,8 +1,6 @@
-//
-// Created by elRubo on 13/09/2016.
-//
+#include "fuzzy_rule.h"
 
-#include "FuzzyRule.h"
+namespace fuzzy {
 
 FuzzyRule::FuzzyRule(){}
 
@@ -29,3 +27,5 @@ void p_computeAlpha() {
     }
     alpha = min;
 }
+
+} // namespace fuzzy
