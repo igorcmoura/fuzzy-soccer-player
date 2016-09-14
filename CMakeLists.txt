@@ -8,5 +8,6 @@ set(SOURCE_FILES
         src/main.cpp
         src/fuzzy/fuzzy.cpp
         src/fuzzy/fuzzy_set.cpp
-        src/fuzzy/fuzzy_rule.cpp)
+        src/fuzzy/fuzzy_rule.cpp
+        src/fuzzy/fuzzy_system.cpp)
 add_executable(FuzzySoccerPlayer ${SOURCE_FILES} ${ENVIRONM_FILES})

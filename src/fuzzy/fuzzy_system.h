@@ -1,10 +1,10 @@
-//
-// Created by elRubo on 13/09/2016.
-//
-
 #ifndef FUZZYSOCCERPLAYER_FUZZYSYSTEM_H
 #define FUZZYSOCCERPLAYER_FUZZYSYSTEM_H
+
 #include <vector>
+
+#include "fuzzy_rule.h"
+
 namespace fuzzy {
 
 class FuzzySystem {
