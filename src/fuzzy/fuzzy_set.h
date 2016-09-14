@@ -16,10 +16,10 @@ public:
 class FuzzySet {
 public:
     FuzzySet() {};
-    FuzzySet(std::vector<Point> points) : points_(points) {};
+    FuzzySet(std::vector<Point> points);
 
-    void addPoint(float position, float value);
     void addPoint(Point point);
+    void addPoint(float position, float value);
     float fuzzifie(float value);
 
 private:
