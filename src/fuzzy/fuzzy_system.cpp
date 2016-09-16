@@ -8,17 +8,17 @@ void FuzzySystem::addRule(FuzzyRule rule) {
     rules_.push_back(rule);
 }
 
-void FuzzySystem::computeOutput() {
-    FuzzySet ceslinhas = FuzzySet::empty(); //empty is a set of zeros
+void FuzzySystem::computeOutput(std::vector<float> positions) {
+    FuzzySet ceslinhas = FuzzySet(); //empty is a set of zeros
     for (FuzzyRule rule : rules_) {
-        ceslinhas.join(rule.getOutput());
+        ceslinhas.join(rule.getOutput(positions));
     }
 
     value_ = ceslinhas.defuzzy();
 }
 
-float FuzzySystem::getOutput(){
-    computeOutput();
+float FuzzySystem::getOutput(std::vector<float> positions){
+    computeOutput(positions);
     return value_;
 }
 

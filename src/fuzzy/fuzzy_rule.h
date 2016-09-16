@@ -11,16 +11,16 @@ namespace fuzzy {
 class FuzzyRule {
 public:
     FuzzyRule();
-    void AddInput(FuzzySet input, float position);
+
+    void AddInput(FuzzySet input);
     void setOutput(FuzzySet output);
-    FuzzySet getOutput();
+    FuzzySet getOutput(std::vector<float> positions);
 
 private:
     std::vector<FuzzySet> p_inputs;
     FuzzySet p_output;
-    float p_alpha;
-    std::vector<float> p_positions;
-    void p_computeAlpha();
+
+    float computeAlpha(std::vector<float> positions);
 
 };
 

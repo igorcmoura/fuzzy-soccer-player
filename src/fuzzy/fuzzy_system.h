@@ -12,10 +12,10 @@ public:
     FuzzySystem();
 
     void addRule(FuzzyRule rule);
-    float getOutput();
+    float getOutput(std::vector<float> positions);
 
 private:
-    void computeOutput();
+    void computeOutput(std::vector<float> positions);
     float value_;
     std::vector<FuzzyRule> rules_;
 };
