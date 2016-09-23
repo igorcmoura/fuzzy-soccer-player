@@ -15,8 +15,7 @@ public:
     float getOutput(std::vector<float> positions);
 
 private:
-    void computeOutput(std::vector<float> positions);
-    float value_;
+    float computeOutput(std::vector<float> positions);
     std::vector<FuzzyRule> rules_;
 };
 
