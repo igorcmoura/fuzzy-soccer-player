@@ -41,6 +41,12 @@ FuzzySet createDownLine(float a, float b, Domain domain) {
     fuzzy_set.addPoint(domain.end, 0.0);
     return fuzzy_set;
 }
+FuzzySet createEmpty(Domain domain) {
+     FuzzySet fuzzy_set = FuzzySet();
+     fuzzy_set.addPoint(domain.begin, 0.0);
+     fuzzy_set.addPoint(domain.end, 0.0);
+     return fuzzy_set;
+}
 
 std::vector<std::vector<float>> dot_product(std::vector<std::vector<float>> matrix_a, std::vector<std::vector<float>> matrix_b){
 

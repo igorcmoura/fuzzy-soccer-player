@@ -12,7 +12,7 @@ class FuzzyRule {
 public:
     FuzzyRule();
 
-    void AddInput(FuzzySet input);
+    void addInput(FuzzySet input);
     void setOutput(FuzzySet output);
     FuzzySet getOutput(std::vector<float> positions);
 

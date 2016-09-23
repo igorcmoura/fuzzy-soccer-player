@@ -1,4 +1,5 @@
 #include "fuzzy_set.h"
+#define DEFUZZY_STEPS 15
 
 namespace fuzzy {
 
@@ -106,8 +107,15 @@ FuzzySet FuzzySet::join(FuzzySet other) {
 }
 
 float FuzzySet::defuzzy() {
-    // TODO implement this
-    return 0;
+    float accumulator =0, den_accum = 0, temp;
+    float limit = points_.back().x;
+    float step = (limit - points_.front().x)/DEFUZZY_STEPS;
+    for(float i =0; i< limit; i += step){
+        temp = getValue(i);
+        accumulator += i*temp;
+        den_accum += temp;
+    }
+    return accumulator/den_accum;
 }
 
 float Line::findValue(float position) {

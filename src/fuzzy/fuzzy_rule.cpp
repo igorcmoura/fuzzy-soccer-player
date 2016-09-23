@@ -4,7 +4,7 @@ namespace fuzzy {
 
 FuzzyRule::FuzzyRule(){}
 
-void FuzzyRule::AddInput(FuzzySet input){
+void FuzzyRule::addInput(FuzzySet input){
     //receives input fuzzy sets and positions
     p_inputs.push_back(input);
 }
