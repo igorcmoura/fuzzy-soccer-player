@@ -54,6 +54,8 @@ FuzzySet FuzzySet::cutAt(float alpha) {
             Line line = Line(last_point, current_point);
             float position = line.findPosition(alpha);
             new_set.addPoint(position, alpha);
+            if (current_point.y < alpha)
+                new_set.addPoint(current_point);
         }
 
         last_point = current_point;
@@ -112,13 +114,15 @@ FuzzySet FuzzySet::join(FuzzySet other) {
 
 float FuzzySet::defuzzy() {
     float accumulator =0, den_accum = 0, temp;
-    float limit = points_.back().x;
-    float step = (limit - points_.front().x)/DEFUZZY_STEPS;
-    for(float i =0; i< limit; i += step){
+    Domain domain = getDomain();
+    float step = (domain.end - domain.begin)/DEFUZZY_STEPS;
+
+    for (float i = domain.begin; i < domain.end; i += step){
         temp = getValue(i);
         accumulator += i*temp;
         den_accum += temp;
     }
+
     return accumulator/den_accum;
 }
 
