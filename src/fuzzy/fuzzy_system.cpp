@@ -1,5 +1,7 @@
 #include "fuzzy_system.h"
 
+#include "fuzzy.h"
+
 namespace fuzzy {
 
 FuzzySystem::FuzzySystem() {}
@@ -9,7 +11,7 @@ void FuzzySystem::addRule(FuzzyRule rule) {
 }
 
 void FuzzySystem::computeOutput(std::vector<float> positions) {
-    FuzzySet ceslinhas = fuzzy::createEmpty(); //empty is a set of zeros
+    FuzzySet ceslinhas = createEmpty(rules_.front().getOutputDomain()); //empty is a set of zeros
     for (FuzzyRule rule : rules_) {
         ceslinhas.join(rule.getOutput(positions));
     }

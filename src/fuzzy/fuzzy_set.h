@@ -5,6 +5,12 @@
 
 namespace fuzzy {
 
+class Domain {
+public:
+    Domain(float begin, float end) : begin(begin), end(end) {};
+    float begin, end;
+};
+
 class Point {
 public:
     Point(float x, float y) : x(x), y(y) {};
@@ -37,6 +43,7 @@ public:
     void addPoint(Point point);
     void addPoint(float position, float value);
     std::vector<Point> getPoints();
+    Domain getDomain();
 
     float getValue(float value);
     FuzzySet cutAt(float alpha);

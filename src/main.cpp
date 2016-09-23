@@ -90,7 +90,6 @@ int main( int argc, char* argv[] ) {
     rule9.addInput(goal_right);
     rule9.setOutput(robot_front);
     system.addRule(rule9);
-    printf("miau\n");
 
     ///conexão
     environm::soccer::clientEnvironm environment;
@@ -106,20 +105,18 @@ int main( int argc, char* argv[] ) {
         printf( "\nFail connecting to the SoccerMatch.\n" );
         return 0; // Cancela a execução se não conseguiu conectar-se.
     }
-    printf("olar 1\n");
 
     ///execução
     bool cont = true;
     std::vector<float> positions;       //ordem das entradas: 0 -> ball angle / 1 -> target angle
-    printf("oba oba oba\n");
     float robot_angle, leftMotor, rightMotor;
-    printf("nasusnausaunsa \n");
     while(cont) {
-        printf("olar");
         positions.clear();
         positions.push_back(environment.getBallAngle());
         positions.push_back(environment.getTargetAngle( environment.getOwnGoal()));
+
         robot_angle = system.getOutput(positions);  //fuzzy magic happens here
+
         leftMotor = (float) (cos(robot_angle) + sin(robot_angle));
         rightMotor =(float) (cos(robot_angle) - sin(robot_angle));
         cont = environment.act(leftMotor, rightMotor);  // Envia o dado pra plataforma. Termina a execução se falha ao agir.

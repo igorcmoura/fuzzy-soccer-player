@@ -7,12 +7,6 @@
 
 namespace fuzzy {
 
-class Domain {
-public:
-    Domain(float begin, float end) : begin(begin), end(end) {};
-    float begin, end;
-};
-
 FuzzySet createTrapezium(float a, float b, float c, float d, Domain domain);
 FuzzySet createTriangle(float a, float b, float c, Domain domain);
 FuzzySet createUpLine(float a, float b, Domain domain);

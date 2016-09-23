@@ -33,6 +33,10 @@ std::vector<Point> FuzzySet::getPoints() {
     return points_;
 }
 
+Domain FuzzySet::getDomain() {
+    return Domain(points_.front().x, points_.back().x);
+}
+
 FuzzySet FuzzySet::cutAt(float alpha) {
     FuzzySet new_set = FuzzySet();
 

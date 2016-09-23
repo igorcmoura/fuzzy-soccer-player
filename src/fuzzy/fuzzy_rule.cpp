@@ -27,4 +27,8 @@ float FuzzyRule::computeAlpha(std::vector<float> positions) {
     return min;
 }
 
+    Domain FuzzyRule::getOutputDomain() {
+        return p_output.getDomain();
+    }
+
 } // namespace fuzzy

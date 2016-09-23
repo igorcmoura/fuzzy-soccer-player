@@ -15,6 +15,7 @@ public:
     void addInput(FuzzySet input);
     void setOutput(FuzzySet output);
     FuzzySet getOutput(std::vector<float> positions);
+    Domain getOutputDomain();
 
 private:
     std::vector<FuzzySet> p_inputs;
