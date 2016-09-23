@@ -13,8 +13,6 @@ FuzzySet createUpLine(float a, float b, Domain domain);
 FuzzySet createDownLine(float a, float b, Domain domain);
 FuzzySet createEmpty(Domain domain);
 
-std::vector<std::vector<float>> dot_product(std::vector<std::vector<float>> matrix_a, std::vector<std::vector<float>> matrix_b);
-
 } // namespace fuzzy
 
 #endif //FUZZYSOCCERPLAYER_FUZZY_H
