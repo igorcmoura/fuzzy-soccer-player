@@ -50,6 +50,8 @@ public:
     FuzzySet join(FuzzySet other);
     float defuzzy();
 
+    void print();
+
 private:
     std::vector<Point> points_;
 };

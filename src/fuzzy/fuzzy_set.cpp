@@ -1,4 +1,7 @@
 #include "fuzzy_set.h"
+
+#include <iostream>
+
 #define DEFUZZY_STEPS 15
 
 namespace fuzzy {
@@ -124,6 +127,13 @@ float FuzzySet::defuzzy() {
     }
 
     return accumulator/den_accum;
+}
+
+void FuzzySet::print() {
+    for (int i = 0; i < points_.size(); ++i) {
+        printf("(%f,%f) ", points_[i].x, points_[i].y);
+    }
+    printf("\n");
 }
 
 float Line::findValue(float position) {
