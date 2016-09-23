@@ -1,8 +1,11 @@
 #include <iostream>
+#include <math.h>
+
 #include "fuzzy/fuzzy.h"
 #include "fuzzy/fuzzy_system.h"
-#include <math.h>
 #include "../lib/environm/environm.h"
+
+#define PI 3.14159265358979323846264338327950f
 
 int main( int argc, char* argv[] ) {
 
@@ -109,17 +112,24 @@ int main( int argc, char* argv[] ) {
     ///execução
     bool cont = true;
     std::vector<float> positions;       //ordem das entradas: 0 -> ball angle / 1 -> target angle
-    float robot_angle, leftMotor, rightMotor;
+    float robot_angle, leftMotor, rightMotor, cosine, sine;
     while(cont) {
         positions.clear();
-        positions.push_back(environment.getBallAngle());
-        positions.push_back(environment.getTargetAngle( environment.getOwnGoal()));
+        positions.push_back(environment.getBallAngle() * 180/PI);
+        printf("Ball: %f\n", positions.back());
+        positions.push_back(environment.getTargetAngle( environment.getOwnGoal()) * 180/PI);
+        printf("Goal: %f\n", positions.back());
 
         robot_angle = system.getOutput(positions);  //fuzzy magic happens here
 
-        leftMotor = (float) (cos(robot_angle) + sin(robot_angle));
-        rightMotor =(float) (cos(robot_angle) - sin(robot_angle));
-        cont = environment.act(leftMotor, rightMotor);  // Envia o dado pra plataforma. Termina a execução se falha ao agir.
+        cosine = (float)cos(robot_angle*PI/180);
+        sine = (float)sin(robot_angle*PI/180);
+
+        leftMotor = (cosine - sine);
+        rightMotor = (cosine + sine);
+
+        printf("Left: %f\tRight: %f -> Angle: %f\n", leftMotor, rightMotor, robot_angle);
+        cont = environment.act(leftMotor, rightMotor);
     }
     return 0;
 }
