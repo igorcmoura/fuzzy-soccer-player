@@ -29,10 +29,11 @@ public:
     float findPosition(float value);
     Point *findIntersection(Line other);
 
-private:
-    bool between(Point point);
     bool hasAPointInCommon(Line other);
     Point *getCommonPoint(Line other);
+
+private:
+    bool between(Point point);
 };
 
 class FuzzySet {

@@ -40,7 +40,7 @@ Domain FuzzySet::getDomain() {
     return Domain(points_.front().x, points_.back().x);
 }
 
-FuzzySet FuzzySet::cutAt(float alpha) {
+FuzzySet FuzzySet::cutAt(float alpha) { // TODO refactor this method
     FuzzySet new_set = FuzzySet();
 
     Point last_point = points_.front();
@@ -72,12 +72,15 @@ FuzzySet FuzzySet::cutAt(float alpha) {
     return new_set;
 }
 
-FuzzySet FuzzySet::join(FuzzySet other) {
+FuzzySet FuzzySet::join(FuzzySet other) { // TODO refactor this method
     FuzzySet new_set = FuzzySet();
 
     bool this_is_higher;
     std::vector<Point> other_points = other.getPoints();
-    if (points_.front().y > other_points.front().y) {
+    if (points_.front().y == other_points.front().y) {
+        new_set.addPoint(points_.front());
+        this_is_higher = points_[1].y > other_points[1].y; // Next point is higher?
+    } else if (points_.front().y > other_points.front().y) {
         new_set.addPoint(points_.front());
         this_is_higher = true;
     } else {
@@ -93,10 +96,18 @@ FuzzySet FuzzySet::join(FuzzySet other) {
         Line other_line = Line(other_points[other_index-1], other_points[other_index]);
         Point* intersection = this_line.findIntersection(other_line);
         if (intersection != nullptr) {
-            new_set.addPoint(*intersection);
-            this_is_higher = !this_is_higher;
+            if (!points_[this_index-1].equals(other_points[other_index-1])) {
+                this_is_higher = !this_is_higher;
+                new_set.addPoint(*intersection);
+            }
         }
-        if (points_[this_index].x < other_points[other_index].x) {
+        if (points_[this_index].x == other_points[other_index].x) {
+            Point new_point = this_is_higher ? points_[this_index] : other_points[other_index];
+            new_set.addPoint(new_point);
+            this_is_higher = points_[this_index+1].y > other_points[other_index].y; // Next point is higher?
+            this_index++;
+            other_index++;
+        } else if (points_[this_index].x < other_points[other_index].x) {
             if (this_is_higher)
                 new_set.addPoint(points_[this_index]);
             this_index++;
@@ -116,7 +127,7 @@ FuzzySet FuzzySet::join(FuzzySet other) {
 }
 
 float FuzzySet::defuzzy() {
-    float accumulator =0, den_accum = 0, temp;
+    float accumulator = 0, den_accum = 0, temp;
     Domain domain = getDomain();
     float step = (domain.end - domain.begin)/DEFUZZY_STEPS;
 
