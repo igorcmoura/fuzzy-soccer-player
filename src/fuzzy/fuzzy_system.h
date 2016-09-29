@@ -9,14 +9,16 @@ namespace fuzzy {
 
 class FuzzySystem {
 public:
-    FuzzySystem();
+    FuzzySystem(Domain output_domain);
 
     void addRule(FuzzyRule rule);
-    float getOutput(std::vector<float> positions);
+    float getOutput();
 
 private:
-    float computeOutput(std::vector<float> positions);
+    float computeOutput();
     std::vector<FuzzyRule> rules_;
+
+    Domain output_domain_;
 };
 
 } // namespace fuzzy

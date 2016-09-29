@@ -2,8 +2,8 @@
 #define FUZZYSOCCERPLAYER_FUZZY_H
 
 #include <vector>
-#include "fuzzy_set.h"
 
+#include "fuzzy_set.h"
 
 namespace fuzzy {
 

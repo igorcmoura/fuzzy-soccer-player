@@ -9,6 +9,8 @@ class Domain {
 public:
     Domain(float begin, float end) : begin(begin), end(end) {};
     float begin, end;
+
+    bool equals(Domain other) { return (begin == other.begin && end == other.end); }
 };
 
 class Point {

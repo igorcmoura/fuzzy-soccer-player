@@ -137,7 +137,10 @@ float FuzzySet::defuzzy() {
         den_accum += temp;
     }
 
-    return accumulator/den_accum;
+    if (den_accum == 0)
+        return (domain.end - domain.begin)/2;
+    else
+        return accumulator/den_accum;
 }
 
 void FuzzySet::print() {
