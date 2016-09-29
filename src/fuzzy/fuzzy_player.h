@@ -18,8 +18,8 @@ public:
 private:
     environm::soccer::clientEnvironm *environment_;
 
-    FuzzySystem *angle_system_, *speed_system_;
-    FuzzyCollection *ball_angle_, *goal_angle_, *robot_angle_;
+    FuzzySystem *system_;
+    FuzzyCollection *ball_angle_, *goal_angle_, *robot_angle_, *ball_distance_;
 
     float left_motor_, right_motor_;
 };
