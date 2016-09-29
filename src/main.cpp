@@ -6,10 +6,7 @@
 
 int main( int argc, char* argv[] ) {
 
-    ///conexão
     environm::soccer::clientEnvironm *environment = new environm::soccer::clientEnvironm();
-
-    fuzzy::FuzzyPlayer player = fuzzy::FuzzyPlayer(environment);
 
     if ( argc != 3 ) {
         printf( "\nSoccerPlayer SERVER_ADDRESS_STRING SERVER_PORT_NUMBER\n" );
@@ -22,12 +19,14 @@ int main( int argc, char* argv[] ) {
         return 0; // Couldn't connect, cancel execution
     }
 
-    ///execução
+    fuzzy::FuzzyPlayer player = fuzzy::FuzzyPlayer(environment);
+
+    // Execution
     bool continue_execution = true;
     while(continue_execution) {
         player.readInputs();
         player.process();
-        continue_execution = player.actuate();
+        continue_execution = player.act();
     }
     return 0;
 }

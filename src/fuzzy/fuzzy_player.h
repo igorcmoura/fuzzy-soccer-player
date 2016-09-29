@@ -13,7 +13,7 @@ public:
 
     void readInputs();
     void process();
-    bool actuate();
+    bool act();
 
 private:
     environm::soccer::clientEnvironm *environment_;
