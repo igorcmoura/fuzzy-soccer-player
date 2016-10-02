@@ -1,3 +1,6 @@
 # Ignores CLion project
 /.idea
 
+# Ignores generated files
+/bin
+
