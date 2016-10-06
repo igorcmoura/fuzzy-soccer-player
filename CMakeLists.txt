@@ -26,3 +26,8 @@ add_custom_command(TARGET FuzzySoccerPlayer POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${CMAKE_SOURCE_DIR}/lib/cygwin1.dll"
         $<TARGET_FILE_DIR:FuzzySoccerPlayer>)
+
+add_custom_command(TARGET FuzzySoccerPlayer POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_SOURCE_DIR}/rules_description.txt"
+        $<TARGET_FILE_DIR:FuzzySoccerPlayer>)

@@ -1,5 +1,7 @@
 #include "fuzzy_system.h"
 
+#include <iostream>
+
 #include "fuzzy.h"
 
 namespace fuzzy {

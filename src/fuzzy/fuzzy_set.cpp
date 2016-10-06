@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#define DEFUZZY_STEPS 15
+#define DEFUZZY_STEPS 360
 
 namespace fuzzy {
 
@@ -73,6 +73,11 @@ FuzzySet FuzzySet::cutAt(float alpha) { // TODO refactor this method
 }
 
 FuzzySet FuzzySet::join(FuzzySet other) { // TODO refactor this method
+    if (this->isEmpty())
+        return FuzzySet(other.points_);
+    else if (other.isEmpty())
+        return FuzzySet(this->points_);
+
     FuzzySet new_set = FuzzySet();
 
     bool this_is_higher;
@@ -150,6 +155,14 @@ void FuzzySet::print() {
     printf("\n");
 }
 
+bool FuzzySet::isEmpty() {
+    for (int i = 0; i < points_.size(); i++) {
+        if (points_[i].y > 0)
+            return false;
+    }
+    return true;
+}
+
 float Line::findValue(float position) {
     float a_weight = p1.y * (p2.x - position);
     float b_weight = p2.y * (position - p1.x);
@@ -179,11 +192,11 @@ Point *Line::findIntersection(Line other) {
 bool Line::between(Point point) {
     float x_uplimit = std::max(p1.x, p2.x);
     float x_downlimit = std::min(p1.x, p2.x);
-    bool between_x = point.x < x_uplimit and point.x > x_downlimit;
+    bool between_x = (point.x <= x_uplimit and point.x >= x_downlimit) or p1.x == p2.x;
 
     float y_uplimit = std::max(p1.y, p2.y);
     float y_downlimit = std::min(p1.y, p2.y);
-    bool between_y = point.y < y_uplimit and point.y > y_downlimit;
+    bool between_y = (point.y <= y_uplimit and point.y >= y_downlimit) or p1.y == p2.y;
 
     return between_x and between_y;
 }
@@ -203,8 +216,8 @@ Point *Line::getCommonPoint(Line other) {
     return nullptr;
 }
 
-    bool Point::equals(Point other) {
-    return  (x == other.x and y == other.y);
+bool Point::equals(Point other) {
+    return (x == other.x and y == other.y);
 }
 
 } // namespace fuzzy

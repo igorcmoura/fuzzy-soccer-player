@@ -53,6 +53,8 @@ public:
     FuzzySet join(FuzzySet other);
     float defuzzy();
 
+    bool isEmpty();
+
     void print();
 
 private:
