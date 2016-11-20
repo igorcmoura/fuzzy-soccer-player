@@ -36,7 +36,7 @@ void FuzzyPlayer::readInputs() {
     }
 }
 
-void FuzzyPlayer::process() {
+void FuzzyPlayer::process(double *output) {
     float spin = environment_->getSpin();
 
     float robot_angle = angle_system_->getOutput();
@@ -63,6 +63,9 @@ void FuzzyPlayer::process() {
     left_motor_ = robot_speed*(cosine - sine)/2;
     right_motor_ = robot_speed*(cosine + sine)/2;
     std::cout << "Left: " << left_motor_ << "\tRight: " << right_motor_ << std::endl;
+
+    output[0] = left_motor_;
+    output[1] = right_motor_;
 }
 
 bool FuzzyPlayer::act() {

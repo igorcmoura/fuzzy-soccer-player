@@ -17,7 +17,7 @@ public:
     FuzzyPlayer(environm::soccer::clientEnvironm *environment, int debug_mode);
 
     void readInputs();
-    void process();
+    void process(double *output);
     bool act();
 
 private:

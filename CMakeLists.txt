@@ -11,7 +11,8 @@ set(SOURCE_FILES
         src/fuzzy/fuzzy_player.cpp
         src/fuzzy/fuzzy_rule.cpp
         src/fuzzy/fuzzy_set.cpp
-        src/fuzzy/fuzzy_system.cpp)
+        src/fuzzy/fuzzy_system.cpp
+        src/logging/environment_logger.cpp)
 add_executable(FuzzySoccerPlayer ${SOURCE_FILES} ${ENVIRONM_FILES})
 
 add_custom_command(TARGET FuzzySoccerPlayer POST_BUILD
