@@ -28,17 +28,17 @@ s goal_angle right_back 1 (-90,0) 0
 
 # robot angle
 c robot_angle angle
-s robot_angle left_back 0 (90,0) 1
-s robot_angle left 0 (0,0) (90,1) 0
+s robot_angle left_back 0 (90,0) (150,1) 0.5
+s robot_angle left 0 (0,0) (80,1) (160,0) 0
 # s robot_angle front_left 0 (0,0) (45,1) (90,0) 0
 s robot_angle front 0 (-90,0) (0,1) (90,0) 0
 # s robot_angle front_right 0 (-90,0) (-45,1) (0,0) 0
-s robot_angle right 0 (-90,1) (0,0) 0
-s robot_angle right_back 1 (-90,0) 0
+s robot_angle right 0 (-160,0) (-80,1) (0,0) 0
+s robot_angle right_back 0.5 (-150,1) (-90,0) 0
 
 # ball distance
 c ball_distance distance
-s ball_distance near 1 (RobotRadius*2,0) 0
+s ball_distance near 1 (RobotRadius*1.5,0) 0
 s ball_distance medium 0 (MaxDistance/4,1) (MaxDistance/2,0)  0
 s ball_distance far 0 (MaxDistance/4,0) 1
 
@@ -72,9 +72,9 @@ r ball_distance far && ball_angle right         -> robot_angle right
 r ball_distance far && ball_angle right_back    -> robot_angle right_back
 
 r ball_distance medium && ball_angle front      && goal_angle front         -> robot_angle front
-r ball_distance medium && ball_angle left       && goal_angle front         -> robot_angle left
+r ball_distance medium && ball_angle left       && goal_angle front         -> robot_angle left_back
 r ball_distance medium && ball_angle left_back  && goal_angle front         -> robot_angle left_back
-r ball_distance medium && ball_angle right      && goal_angle front         -> robot_angle right
+r ball_distance medium && ball_angle right      && goal_angle front         -> robot_angle right_back
 r ball_distance medium && ball_angle right_back && goal_angle front         -> robot_angle right_back
 r ball_distance medium && ball_angle front      && goal_angle left          -> robot_angle right
 r ball_distance medium && ball_angle front      && goal_angle left_back     -> robot_angle right
@@ -101,9 +101,9 @@ r ball_distance near && ball_angle front && goal_angle front && rival_distance c
 r ball_distance near && ball_angle front && goal_angle front && rival_distance close && rival_angle right -> robot_angle left
 r ball_distance near && ball_angle front && goal_angle front && rival_distance far -> robot_angle front
 
-r ball_distance near && ball_angle left         && goal_angle front         -> robot_angle left
+r ball_distance near && ball_angle left         && goal_angle front         -> robot_angle left_back
 r ball_distance near && ball_angle left_back    && goal_angle front         -> robot_angle left_back
-r ball_distance near && ball_angle right        && goal_angle front         -> robot_angle right
+r ball_distance near && ball_angle right        && goal_angle front         -> robot_angle right_back
 r ball_distance near && ball_angle right_back   && goal_angle front         -> robot_angle right_back
 r ball_distance near && ball_angle front        && goal_angle left          -> robot_angle left
 r ball_distance near && ball_angle front        && goal_angle left_back     -> robot_angle right
@@ -140,7 +140,36 @@ r ball_distance medium  && ball_angle right         -> robot_speed medium
 r ball_distance medium  && ball_angle left_back     -> robot_speed medium
 r ball_distance medium  && ball_angle right_back    -> robot_speed medium
 
-r ball_distance near && rival_angle left -> robot_speed medium
+r ball_distance near && rival_distance far                              && ball_angle front && goal_angle front -> robot_speed fast
+r ball_distance near && rival_distance close && rival_angle front_left  && ball_angle front && goal_angle front -> robot_speed medium
+r ball_distance near && rival_distance close && rival_angle front_right && ball_angle front && goal_angle front -> robot_speed medium
+r ball_distance near && rival_distance close && rival_angle left        && ball_angle front && goal_angle front -> robot_speed fast
+r ball_distance near && rival_distance close && rival_angle right       && ball_angle front && goal_angle front -> robot_speed fast
+
+r ball_distance near && rival_distance close && ball_angle left       && goal_angle front      -> robot_speed fast
+r ball_distance near && rival_distance close && ball_angle right      && goal_angle front      -> robot_speed fast
+r ball_distance near && rival_distance close && ball_angle left_back  && goal_angle front      -> robot_speed slow
+r ball_distance near && rival_distance close && ball_angle right_back && goal_angle front      -> robot_speed slow
+r ball_distance near && rival_distance close && ball_angle front      && goal_angle left       -> robot_speed fast
+r ball_distance near && rival_distance close && ball_angle left       && goal_angle left       -> robot_speed fast
+r ball_distance near && rival_distance close && ball_angle right      && goal_angle left       -> robot_speed fast
+r ball_distance near && rival_distance close && ball_angle left_back  && goal_angle left       -> robot_speed slow
+r ball_distance near && rival_distance close && ball_angle right_back && goal_angle left       -> robot_speed slow
+r ball_distance near && rival_distance close && ball_angle front      && goal_angle right      -> robot_speed fast
+r ball_distance near && rival_distance close && ball_angle left       && goal_angle right      -> robot_speed fast
+r ball_distance near && rival_distance close && ball_angle right      && goal_angle right      -> robot_speed fast
+r ball_distance near && rival_distance close && ball_angle left_back  && goal_angle right      -> robot_speed slow
+r ball_distance near && rival_distance close && ball_angle right_back && goal_angle right      -> robot_speed slow
+r ball_distance near && rival_distance close && ball_angle front      && goal_angle left_back  -> robot_speed medium
+r ball_distance near && rival_distance close && ball_angle left       && goal_angle left_back  -> robot_speed medium
+r ball_distance near && rival_distance close && ball_angle right      && goal_angle left_back  -> robot_speed medium
+r ball_distance near && rival_distance close && ball_angle left_back  && goal_angle left_back  -> robot_speed slow
+r ball_distance near && rival_distance close && ball_angle right_back && goal_angle left_back  -> robot_speed slow
+r ball_distance near && rival_distance close && ball_angle front      && goal_angle right_back -> robot_speed medium
+r ball_distance near && rival_distance close && ball_angle left       && goal_angle right_back -> robot_speed medium
+r ball_distance near && rival_distance close && ball_angle right      && goal_angle right_back -> robot_speed medium
+r ball_distance near && rival_distance close && ball_angle left_back  && goal_angle right_back -> robot_speed slow
+r ball_distance near && rival_distance close && ball_angle right_back && goal_angle right_back -> robot_speed slow
 
 
 
