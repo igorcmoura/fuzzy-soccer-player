@@ -60,9 +60,13 @@ void FuzzyPlayer::process(double *output) {
 
     std::cout << "Robot spin = " << spin << std::endl;
 
-    left_motor_ = robot_speed*(cosine - sine)/2;
-    right_motor_ = robot_speed*(cosine + sine)/2;
+    left_motor_ = robot_speed*(cosine - sine);
+    right_motor_ = robot_speed*(cosine + sine);
     std::cout << "Left: " << left_motor_ << "\tRight: " << right_motor_ << std::endl;
+
+    left_motor_ += 10*spin;
+    right_motor_ -= 10*spin;
+    std::cout << "Left updated: " << left_motor_ << "\tRight updated: " << right_motor_ << std::endl;
 
     output[0] = left_motor_;
     output[1] = right_motor_;
